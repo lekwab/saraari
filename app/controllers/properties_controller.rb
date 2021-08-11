@@ -1,5 +1,8 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[ show edit update destroy ]
+  before_action :authenticate_account!, only: %i[ new edit update destroy ]
+  before_action :set_sidebar, except: [:show]
+
 
   # GET /properties or /properties.json
   def index
@@ -8,9 +11,11 @@ class PropertiesController < ApplicationController
 
   # GET /properties/1 or /properties/1.json
   def show
+   @agent = @property.account
+   @agent_properties = Property.where(account_id: @agent.id).where.not(id: @property.id).limit(3)
   end
 
-  # GET /properties/new
+    # GET /properties/new
   def new
     @property = Property.new
   end
@@ -19,14 +24,19 @@ class PropertiesController < ApplicationController
   def edit
   end
 
+  def profile
+    @account = Account.find(params[:id])
+  end
+
   # POST /properties or /properties.json
   def create
     @property = Property.new(property_params)
+    @property.account_id = current_account.id
 
     respond_to do |format|
       if @property.save
         format.html { redirect_to @property, notice: "Property was successfully created." }
-        format.json { render :show, status: :created, location: @property }
+        format.json { render :show, status: :created, address: @property }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @property.errors, status: :unprocessable_entity }
@@ -39,7 +49,7 @@ class PropertiesController < ApplicationController
     respond_to do |format|
       if @property.update(property_params)
         format.html { redirect_to @property, notice: "Property was successfully updated." }
-        format.json { render :show, status: :ok, location: @property }
+        format.json { render :show, status: :ok, address: @property }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @property.errors, status: :unprocessable_entity }
@@ -51,7 +61,21 @@ class PropertiesController < ApplicationController
   def destroy
     @property.destroy
     respond_to do |format|
-      format.html { redirect_to properties_url, notice: "Property was successfully destroyed." }
+      format.html { redirect_to properties_url, notice: "Property was successfully deleted." }
+      format.json { head :no_content }
+    end
+  end
+
+  def book_viewing
+    agent_id = params[:agent_id]
+    first_name = params[:first_name]
+    last_name = params[:last_name]
+    email = params[:email]  
+    phone = params[:phone]
+
+    ViewingMailer.viewing( agent_id, first_name, last_name, email, phone ).deliver_now
+
+    respond_to do |format|
       format.json { head :no_content }
     end
   end
@@ -62,8 +86,12 @@ class PropertiesController < ApplicationController
       @property = Property.find(params[:id])
     end
 
+    def set_sidebar
+      @show_sidebar = true
+    end
+
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:name, :address, :price, :rooms, :bathrooms)
+      params.require(:property).permit(:name, :address, :price, :rooms, :bathrooms, :for_rent, :available_date, :details, images: [])
     end
 end

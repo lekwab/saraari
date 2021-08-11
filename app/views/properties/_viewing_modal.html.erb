@@ -1,0 +1,37 @@
+<div class="modal fade" id="viewing-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Book a Viewing for <%= @property.name %> </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag viewing_path, id: "book-viewing" do %>
+          <% hidden_field_tag :agent_id, @agent.id %>
+          
+          <div class="form-group">
+            <label for="viewing-first-name" class="col-form-label" id="viewing-first-name">First Name:</label>
+            <%= text_field_tag :first_name, nil, class: "form-control", id: "viewing-first-name" %>
+          </div>
+          <div class="form-group">
+            <label for="viewing-last-name" class="col-form-label" id="viewing-last-name">Last Name:</label>
+            <%= text_field_tag :last_name, nil, class: "form-control", id: "viewing-last-name" %>
+          </div>
+          <div class="form-group">
+            <label for="viewing-email" class="col-form-label" id="viewing-email">Email Address:</label>
+            <%= text_field_tag :email, nil, class: "form-control", id: "viewing-email" %>
+          </div>
+          <div class="form-group">
+            <label for="viewing-phone" class="col-form-label" id="viewing-phone">Phone Number:</label>
+            <%= text_field_tag :phone, nil, class: "form-control", id: "viewing-phone" %>
+          </div>
+          
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" id="book-viewing">Book Viewing</button>
+      </div>
+    </div>
+  </div>
+</div>

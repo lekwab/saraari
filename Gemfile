@@ -26,7 +26,15 @@ gem 'devise', '~> 4.7', '>= 4.7.3'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
+
+gem 'mini_magick', '~> 4.11'
+
+gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
+
+gem 'bootstrap-datepicker-rails', '~> 1.9', '>= 1.9.0.1'
+
+gem 'mail_form', '~> 1.9'
 
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -40,7 +48,7 @@ end
 group :production do
   gem 'pg', '~> 1.2', '>= 1.2.3'
 # gem 'rails_12factor', '0.0.2'
-end
+end 
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -48,6 +56,7 @@ group :development do
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
+  gem "figaro"
 end
 
 group :test do

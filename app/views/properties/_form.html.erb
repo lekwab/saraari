@@ -1,42 +1,55 @@
 <%= form_with(model: property) do |form| %>
-  <% if property.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+ <%= render "layouts/validation", time: @property %>
 
-      <ul>
-        <% property.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+  <div class="form-group">
+    <%= form.label :location %>
+    <%= form.text_field :address, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
+  <div class="form-group">
+    <%= form.label :price, "Monthly Price (rental) / Total Price (for sale)" %>
+    <%= form.number_field :price, class: "form-control" %>
   </div>
 
-  <div class="field">
+    <div class="form-group">
     <%= form.label :rooms %>
-    <%= form.number_field :rooms %>
+    <%= form.number_field :rooms, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :bathrooms %>
-    <%= form.number_field :bathrooms %>
+    <%= form.number_field :bathrooms, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.label :for_rent %>
+    <%= form.select :for_rent, options_for_select({ "Yes" => true, "No" => false }, @property.for_rent), class: "form-control" %>
   </div>
+
+  <div class="form-group">
+    <%= form.label :details %>
+    <%= form.text_area :details, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true, class: "form-control" %>
+    <%= form.hidden_field :image_cache %>
+    <% if @property.images.present? %>
+       <%= image_tag(@property.images[0], style:'width:200px; padding:5px;') %>
+    <% end %>
+  </div>
+
+
+  
+<br>
+  <div class="form-group">
+    <%= form.submit "Save Property", class: "btn btn-lg btn-success"  %>
+  </div>
+  
 <% end %>
