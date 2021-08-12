@@ -8,4 +8,4 @@ class ViewingMailer < ApplicationMailer
         @phone = phone
 
         if @agent.present?
-            mail to: @agent.email, message: "You have a new viewing appointment from Sarari"
+            mail to: @agent.email, message: "You have a new viewing appointment from saraari"
