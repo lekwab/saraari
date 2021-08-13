@@ -5,7 +5,7 @@ class Property < ApplicationRecord
     validate :image_type
 
     def thumbnail input
-        return self.images[input].variant(resize: '300x200!')
+        return self.images[input].variant(resize: '200x200!')
     end
 
     
