@@ -3,12 +3,57 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">PROPERTY LIST</h1>
+        <h1 class="fw-light">Properties</h1>
         <p class="lead text-muted">Here is a list of all currently available properties.<br/>We are sure you will find just what you are looking for.</p>
+
       </div>
     </div>
   </section>
+<nav class="navbar navbar-expand navbar-dark bg-dark text-center" aria-label="Second navbar example">
+    <div class="container-fluid">
+      <label for="select" class="text-white text-center">Category</label>
+      <select id="select">
+        <option value="">Choose...</option>
+        <optgroup label="Would you want to Buy or Rent?">
+          <option value="">Buy</option>
+          <option value="">Rent</option>
+        </optgroup>
+      </select>
 
+      
+     
+      <label for="input" class="text-white">City</label>
+      <input type="text" id="input" placeholder="Enter your preffered city">
+      
+
+      <label for="select" class="text-white text-center">Bedrooms</label>
+      <select id="select">
+        <option value="">Choose...</option>
+        <optgroup label="How many Bedrooms do you need?">
+          <option value="">1</option>
+          <option value="">2</option>
+          <option value="">3</option>
+          <option value="">4</option>
+          <option value="">5 or more</option>
+        </optgroup>
+        
+      </select>
+      <label for="select" class="text-white text-center">Bathrooms</label>
+      <select id="select">
+        <option value="">Choose...</option>
+        <optgroup label="How many Bathrooms do you need?">
+          <option value="">1</option>
+          <option value="">2</option>
+          <option value="">3</option>
+          <option value="">4</option>
+          <option value="">5 or more</option>
+        </optgroup>
+        
+      </select>
+      <button type="submit" class="btn btn-sm btn-secondary">Search</button>
+      
+    </div>
+  </nav>
   
   <section class="py-5 container">
     <div class="row g-5">
@@ -62,6 +107,7 @@
     </div>
     <br/>
     <p class="text-center">
+          <a href="#" class="btn btn-primary my-2">Do you have a Property for Sale / Rent? Contact Us</a>
           <a href="#" class="btn btn-primary my-2">Are you a Realtor? Contact Us</a>
           <a href="#" class="btn btn-secondary my-2">Didn't find what you're looking for?</a>
         </p>
