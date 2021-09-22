@@ -45,7 +45,9 @@
     <% end %>
   </div>
 
-
+<div class="form-group">
+    <%= form.number_field :account_id, id: :property_account_id, class: "form-control", value: current_account.id, type: :hidden %>
+  </div>
   
 <br>
   <div class="form-group">

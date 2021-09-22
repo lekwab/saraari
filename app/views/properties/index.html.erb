@@ -10,18 +10,21 @@
       <th>Price</th>
       <th>Rooms</th>
       <th>Bathrooms</th>
+      <th>Account ID</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @properties.each do |property| %>
+    
       <tr>
         <td><%= property.name %></td>
         <td><%= property.address %></td>
         <td><%= property.price %></td>
         <td><%= property.rooms %></td>
         <td><%= property.bathrooms %></td>
+        <td><%= property.account_id %> </td>
         <td colspan=2 >
         <div class="btn-group me-2">
         <%= link_to 'Show', property, class: "btn btn-outline-secondary btn-sm" %>
