@@ -21,6 +21,10 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'devise', '~> 4.7', '>= 4.7.3'
 
+
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -51,7 +55,9 @@ end
 
 group :production do
   gem 'pg', '~> 1.2', '>= 1.2.3'
+  gem 'mini_racer'
 # gem 'rails_12factor', '0.0.2'
+
 end 
 
 group :development do
