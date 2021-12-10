@@ -2,12 +2,12 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: %i[ show edit update destroy ]
   before_action :authenticate_account!, only: %i[ new edit update destroy ]
   before_action :set_sidebar, except: [:show]
-  before_action :correct_account, only: [:edit, :update, :destroy, :show]
+  
 
   # GET /properties or /properties.json
   def index
     @properties = Property.all
-    @properties_list = Property.all.where(account_id: @property_account_id ).where.not(id: @property_account_id)
+    
   end
 
   # GET /properties/1 or /properties/1.json
@@ -82,7 +82,7 @@ class PropertiesController < ApplicationController
   end
 
   def correct_account
-    @property = current_account.properties.find_by(id: params[:id])
+    @property = current_account.properties.find(id: params[:id])
     redirect_to properties_path, notice: "Not Authorized to Edit this Property" if @property.nil?
   end
 
@@ -95,6 +95,7 @@ class PropertiesController < ApplicationController
     def set_sidebar
       @show_sidebar = true
     end
+
 
     # Only allow a list of trusted parameters through.
     def property_params
